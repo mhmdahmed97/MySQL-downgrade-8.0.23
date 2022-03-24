@@ -1,0 +1,93 @@
+#!/usr/bin/sudo bash
+#Author : Muhammed Ahmed ; muhammedahmed167@gmail.com
+
+#Downloading mySQL server-community-8.0.23 -----------------
+cd Downloads
+wget https://downloads.mysql.com/archives/get/p/23/file/mysql-server_8.0.23-1ubuntu20.04_amd64.deb-bundle.tar
+
+
+#Extracting tar file -----------------
+mkdir mysql-server_8.0.23-1ubuntu20.04_amd64.deb-bundle
+tar -xf mysql-server_8.0.23-1ubuntu20.04_amd64.deb-bundle.tar -C mysql-server_8.0.23-1ubuntu20.04_amd64.deb-bundle
+cd mysql-server_8.0.23-1ubuntu20.04_amd64.deb-bundle
+
+# Starting process of extracting .deb filenames from the directory-----------------
+ls > output.txt
+echo "File output created"
+varArray=()
+echo "Array created"
+n=0
+echo $n
+filename='output.txt'
+while read line
+ do
+	if (($n == 0));
+		then
+			varArray[5]="$line"
+	elif (($n == 1));
+		then
+			varArray[6]="$line"
+	elif (($n == 2));
+		then
+			varArray[7]="$line"
+	elif (($n == 3));
+		then
+			varArray[3]="$line"
+	elif (($n == 4));
+		then
+			varArray[4]="$line"
+	elif (($n == 5));
+		then
+			varArray[2]="$line"
+	elif (($n == 6));
+		then
+			varArray[0]="$line"
+	elif (($n == 7));
+		then
+			varArray[9]="$line"
+	elif (($n == 8));
+		then
+			varArray[8]="$line"
+	elif (($n == 9));
+		then
+			varArray[1]="$line"
+	elif (($n == 10));
+		then
+			varArray[10]="$line"
+	elif (($n == 11));
+		then
+			varArray[11]="$line"
+	elif (($n == 12));
+		then
+			varArray[12]="$line"
+	elif (($n == 13));
+		then
+			varArray[13]="$line"
+	else
+		break
+	fi
+		n=$((n+1))
+done < $filename
+echo "${line[@]}"
+
+###Adding required commands to new script
+printf '%s\n' "${varArray[@]}" >> newfile.sh
+sed -i s/^/"dpkg -i "/ newfile.sh
+
+###giving root privilege to new script
+x=`echo "#!/usr/bin/sudo bash"; cat newfile.sh`
+echo "$x" > newfile.sh
+
+###obtaining execute permission 
+chmod +x newfile.sh
+###purging old version
+sudo apt-get remove --purge mysql* -y
+sudo apt-get purge mysql* -y
+sudo apt-get autoremove
+sudo apt-get autoclean
+sudo apt-get remove dbconfig-mysql
+###purge complete
+apt --fix-broken install
+sudo apt-get install libmecab2:amd64 -y
+#running fresh install
+./newfile.sh
