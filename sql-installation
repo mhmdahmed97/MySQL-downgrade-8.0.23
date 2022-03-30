@@ -89,5 +89,6 @@ sudo apt-get remove dbconfig-mysql
 ###purge complete
 apt --fix-broken install
 sudo apt-get install libmecab2:amd64 -y
+apt --fix-broken install
 #running fresh install
 ./newfile.sh
