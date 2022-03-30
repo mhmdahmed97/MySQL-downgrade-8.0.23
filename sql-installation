@@ -1,6 +1,14 @@
 #!/usr/bin/sudo bash
 #Author : Muhammed Ahmed ; muhammedahmed167@gmail.com
 
+###purging old version
+sudo apt-get remove --purge mysql* -y
+sudo apt-get purge mysql* -y
+sudo apt-get autoremove
+sudo apt-get autoclean
+sudo apt-get remove dbconfig-mysql
+###purge complete
+
 #Downloading mySQL server-community-8.0.23 -----------------
 cd Downloads
 wget https://downloads.mysql.com/archives/get/p/23/file/mysql-server_8.0.23-1ubuntu20.04_amd64.deb-bundle.tar
@@ -80,15 +88,18 @@ echo "$x" > newfile.sh
 
 ###obtaining execute permission 
 chmod +x newfile.sh
-###purging old version
-sudo apt-get remove --purge mysql* -y
-sudo apt-get purge mysql* -y
-sudo apt-get autoremove
-sudo apt-get autoclean
-sudo apt-get remove dbconfig-mysql
-###purge complete
+
+###Important commands to fix install
 apt --fix-broken install
 sudo apt-get install libmecab2:amd64 -y
 apt --fix-broken install
+
 #running fresh install
 ./newfile.sh
+
+#Installing mysql-shell - 8.0.23
+echo "Installing MySQL Shell - 8.0.23 ....."
+wget https://downloads.mysql.com/archives/get/p/43/file/mysql-shell_8.0.23-1ubuntu20.04_amd64.deb
+dpkg -i https://downloads.mysql.com/archives/get/p/43/file/mysql-shell_8.0.23-1ubuntu20.04_amd64.deb
+
+apt-mark hold mysql-server mysql-client mysql-shell
