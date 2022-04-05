@@ -90,7 +90,6 @@ echo "$x" > newfile.sh
 chmod +x newfile.sh
 
 ###Important commands to fix install
-apt --fix-broken install
 sudo apt-get install libmecab2:amd64 -y
 apt --fix-broken install
 
@@ -100,6 +99,6 @@ apt --fix-broken install
 #Installing mysql-shell - 8.0.23
 echo "Installing MySQL Shell - 8.0.23 ....."
 wget https://downloads.mysql.com/archives/get/p/43/file/mysql-shell_8.0.23-1ubuntu20.04_amd64.deb
-dpkg -i https://downloads.mysql.com/archives/get/p/43/file/mysql-shell_8.0.23-1ubuntu20.04_amd64.deb
+dpkg -i mysql-shell_8.0.23-1ubuntu20.04_amd64.deb
 
 apt-mark hold mysql-server mysql-client mysql-shell
