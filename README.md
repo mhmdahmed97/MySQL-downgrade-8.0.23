@@ -1,4 +1,4 @@
-# MySQL-downgrade-8.0.23
+# MySQL-downgrade_8.0.23
 This script automates the process of downgrading a MySQL community server to version 8.0.23(community) on a Ubuntu 20.0.4 server
 
 how to run:
