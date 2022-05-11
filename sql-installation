@@ -89,6 +89,7 @@ echo "$x" > newfile.sh
 chmod +x newfile.sh
 
 ###Important commands to fix install
+apt --fix-broken install
 sudo apt-get install libmecab2:amd64 -y
 apt --fix-broken install
 
